@@ -1,10 +1,5 @@
-import os
-import json
-import tempfile
-
 import streamlit as st
 from dotenv import load_dotenv
-from markitdown import MarkItDown
 from google import genai
 from google.genai import types
 from pydantic import BaseModel, Field
@@ -31,7 +26,8 @@ def generate_quiz(text_content: str, quiz_level: str, num_questions: int) -> Qui
     Text: {text_content}
     You are an expert in generating multiple-choice question type quizzes on the basis of provided content.
     Given the above text, generate a quiz with {num_questions} multiple-choice questions keeping the difficulty level as {quiz_level}.
-    Each question must have options labelled A, B, C, and D, and correct_answer must exactly match one of those options.
+    Each question should have options labelled A, B, C, and D, and correct_answer must exactly match one of those options.Add a bit of True or False questions to each quiz.
+    If the provided content is bulky or contains more than onetopic, then split questions by themes or topic
     """
 
     response = client.models.generate_content(
