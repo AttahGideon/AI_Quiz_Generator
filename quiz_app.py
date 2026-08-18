@@ -9,7 +9,8 @@ import json
 load_dotenv()
 
 # Initialize Clients
-client = genai.Client()
+client = genai.Client( api_key=st.secrets["GEMINI_API_KEY"]
+                     )
 
 # Define JSON Response Schema
 class Question(BaseModel):
